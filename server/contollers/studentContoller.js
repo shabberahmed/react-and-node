@@ -20,38 +20,40 @@ export const getStudents=async(req,res)=>{
     })
 }
 
-// -----psot students
-export const postStudent=async(req,res)=>{
-    const{name,email,age,phone,batch}=req.body
-    let existingStudentData;
-    try{
-        existingStudentData=await studentModel.findOne({email})
-    }
-    catch(err){
-        console.log(err)
-    }
-    if(existingStudentData){
-        res.json({
-            message:"data already exist"
-        })
-    }
-    const newStudent=new studentModel({
-        name:name,
-        age:age,
-        email:email,
-        phone:phone,
-        batch:batch
-    })
-    try{
-        newStudent.save()
-       
-    }
-    catch(err){
-        res.json({message:err})
 
+export const postStudent = async (req, res) => {
+    const { name, email, age, phone, batch } = req.body;
+    let existingStudentData;
+    try {
+      existingStudentData = await studentModel.findOne({ email });
+    } catch (err) {
+      console.log(err);
     }
-    res.send("data sent")
-}
+  
+    if (existingStudentData) {
+      res.json({
+        message: "Data already exists",
+      });
+      return; // Return after sending the response
+    }
+  
+    const newStudent = new studentModel({
+      name: name,
+      age: age,
+      email: email,
+      phone: phone,
+      batch: batch,
+    });
+  
+    try {
+      await newStudent.save(); 
+      res.send("Data saved successfully")
+    } catch (err) {
+      console.log(err);
+      res.json({ message: err });
+    }
+  };
+  
 // ----delete contoller
 export const deleteStudent=async(req,res)=>{
     const id=req.params.id

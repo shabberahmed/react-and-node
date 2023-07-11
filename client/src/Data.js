@@ -35,6 +35,7 @@ const Data = () => {
     },[])
   return (
    <>
+   <Link to="/add">add user</Link>
     <div>
         <button className='btn btn-success' onClick={()=>nav("/")}>home</button>
         <table className='table table-primary'>

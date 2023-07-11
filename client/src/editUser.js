@@ -23,22 +23,25 @@ const {id}=useParams()
         }
     }
     const Apiput=async()=>{
-        await axios.put(`http://localhost:9000/api/students/${id}`)
+        await axios.put(`http://localhost:9000/api/students/${id}`,data)
     }
 
  
     useEffect(()=>{
         Api()
     },[])
-    const handleSubmit=()=>{
+    useEffect(()=>{
         Apiput()
-        nav("/")
+    },[])
+    const handleSubmit=async()=>{
+    Apiput()
+   nav("/")
     }
   
       return (
        <>
-       <div>
-       <form>
+       <div className='d-block align-items-center container w-50'>
+       <form onSubmit={handleSubmit}>
       <div className="mb-3">
        
         <input type="email" name='email' placeholder='email' value={data.email} onChange={handleChange} className="form-control"  aria-describedby="emailHelp"/>
@@ -54,7 +57,7 @@ const {id}=useParams()
     
         <input type="text" name='batch'placeholder='batch' value={data.batch} onChange={handleChange} className="form-control"  aria-describedby="emailHelp"/>
      </div>
-      <button type="submit" onClick={handleSubmit} className="btn btn-primary">Submit</button>
+      <button type="submit"  className="btn btn-primary">Submit</button>
     </form>
        </div>
        </>
