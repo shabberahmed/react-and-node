@@ -15,6 +15,7 @@ export const getStudents=async(req,res)=>{
         res.send("no data")
     }
     res.json({
+        
         message:studentData
     })
 }
@@ -51,6 +52,45 @@ export const postStudent=async(req,res)=>{
     }
     res.send("data sent")
 }
- 
+// ----delete contoller
+export const deleteStudent=async(req,res)=>{
+    const id=req.params.id
+    console.log(id)
+    try{
+      await studentModel.findByIdAndDelete(id)
+       res.send("deleted succesfully")
+    }
+    catch(err){
+        res.send("id not found")
+        console.log(err,"id not found")
+    }
+}
 
+// .....edit contoller
+export const editId=async(req,res)=>{
+    const id=req.params.id
 
+    try{
+     const data= await studentModel.findById(id)
+     console.log(data)
+     res.json({
+        message:data
+     })
+    }
+    catch{
+        console.log("id not found")
+    }
+}
+export const editStudent = async (req,res) => {
+    const id =req.params.id
+    // console.log(id)
+    try {
+      await studentModel.findByIdAndUpdate(id, req.body);
+      
+      res.send("element updated");
+    } catch (err) {
+      res.send("some error");
+    }
+  };
+  
+  
