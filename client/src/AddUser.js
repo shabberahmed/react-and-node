@@ -12,7 +12,9 @@ const AddUser = () => {
   const Api=async()=>{
     await axios.post("http://localhost:9000/api/students",data)
   }
-
+// useEffect(()=>{
+// Api()
+// },[])
   let handleSubmit=()=>{
   Api()
   nav('/')

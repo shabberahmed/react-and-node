@@ -20,19 +20,10 @@ const Data = () => {
         const response=await axios.delete(`http://localhost:9000/api/students/${id}`)
         Api()
     }
-//   const editApi=async(id)=>{
-//         const res=await axios.get(`http://localhost:9000/api/students/${id}`)
-//         const data=res.data
-//         try{
-             
-//             nav("/edit",data)
-//         }
-//         catch{
-//         }
-//     }
+
     useEffect(()=>{
         Api()
-    },[])
+    },[data])
   return (
    <>
    <Link to="/add">add user</Link>

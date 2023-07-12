@@ -27,9 +27,10 @@ const {id}=useParams()
     }
 
  
-    useEffect(()=>{
-        Api()
-    },[])
+ useEffect(()=>{
+    Api()
+ },[])
+   
     useEffect(()=>{
         Apiput()
     },[])
@@ -37,7 +38,6 @@ const {id}=useParams()
     Apiput()
    nav("/")
     }
-  
       return (
        <>
        <div className='d-block align-items-center container w-50'>
