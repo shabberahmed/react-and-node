@@ -20,10 +20,9 @@ const Data = () => {
         const response=await axios.delete(`http://localhost:9000/api/students/${id}`)
         Api()
     }
-
     useEffect(()=>{
         Api()
-    },[data])
+    },[])
   return (
    <>
    <Link to="/add">add user</Link>
@@ -40,7 +39,7 @@ const Data = () => {
                 data.map((val)=>{
                     return(
                         <>
-                        <tr>
+                        <tr key={val._id}>
                             <td>{val.name}</td><td>{val.email}</td><td>{val.age}</td><td>{val.phone}</td><td>{val.batch}</td><td>
                                 
                                 <button className='btn btn-danger' onClick={()=>deleteApi(val._id)} >delete</button>

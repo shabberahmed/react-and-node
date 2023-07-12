@@ -9,18 +9,17 @@ const AddUser = () => {
         setData({...data,[e.target.name]:e.target.value})
     
     }
+   
   const Api=async()=>{
     await axios.post("http://localhost:9000/api/students",data)
   }
-// useEffect(()=>{
-// Api()
-// },[])
+  useEffect(()=>{
+    Api()
+  },[])
+
   let handleSubmit=()=>{
   Api()
   nav('/')
-
-
-  
   }
   return (
    <>
@@ -50,5 +49,4 @@ const AddUser = () => {
    </>
   )
 }
-
 export default AddUser

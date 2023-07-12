@@ -33,8 +33,8 @@ export const postStudent = async (req, res) => {
     if (existingStudentData) {
       res.json({
         message: "Data already exists",
-      });
-      return; // Return after sending the response
+      })
+      return
     }
   
     const newStudent = new studentModel({
@@ -48,9 +48,8 @@ export const postStudent = async (req, res) => {
     try {
       await newStudent.save(); 
       res.send("Data saved successfully")
-    } catch (err) {
-      console.log(err);
-      res.json({ message: err });
+    } catch  {
+      res.json({ message:"already exists" });
     }
   };
   
